@@ -148,31 +148,18 @@ class _ParaphraseScreenState extends State<ParaphraseScreen> {
       _isLoading = true;
     });
 
-    final String apiKey = ''; // Replace with your RewriteAI API key
-    final String url =
-        'https://rimedia-paraphraser.p.rapidapi.com/api_paraphrase.php';
+    final url = Uri.parse('http://127.0.0.1:5000/paraphase');
 
-    final Map<String, String> headers = {
-      'content-type': 'application/x-www-form-urlencoded',
-      'X-RapidAPI-Key': apiKey,
-      'X-RapidAPI-Host': 'rimedia-paraphraser.p.rapidapi.com',
-    };
-
-    final Map<String, String> body = {
-      'text': widget.userInput,
-      'lang': 'en',
-      'paraphrase_capital': 'true',
-      'protected': 'YOUR;something',
-    };
-
-    final http.Response response =
-        await http.post(Uri.parse(url), headers: headers, body: body);
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'text': widget.userInput}),
+    );
 
     if (response.statusCode == 200) {
-      final Map<String, dynamic> responseData =
-          json.decode(response.body); // Decoding JSON response
+      final Map<String, dynamic> responseData = json.decode(response.body);
       setState(() {
-        _paraphrasedText = _cleanText(responseData['result_text_new']);
+        _paraphrasedText = responseData['paraphrased_text'];
         _isLoading = false;
       });
     } else {
@@ -181,11 +168,6 @@ class _ParaphraseScreenState extends State<ParaphraseScreen> {
         _isLoading = false;
       });
     }
-  }
-
-  // Function to remove non-alphanumeric characters
-  String _cleanText(String text) {
-    return text.replaceAll(RegExp(r'[^a-zA-Z0-9\s]'), '');
   }
 
   @override
