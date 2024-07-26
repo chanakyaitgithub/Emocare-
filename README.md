@@ -29,7 +29,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 ## Features
 
-### 1. Emotion Calculation
+### 1. Emotion Detection
 - Calculate mean emotion values for individuals over time.
 - Showcase proactive support and personalized interventions.
 
