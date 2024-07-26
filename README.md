@@ -37,13 +37,15 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 - AI-driven chatbot automatically responds to emotions.
 - Enhances user experience and emotional well-being.
 
-### 3. Emotional Check and Paraphrasing
+### 3. Emotion Regulation and Paraphrasing
 - Detects and addresses emotionally charged conversations.
 - Promotes positive dialogue and reduces conflict through paraphrasing.
+- Paraphasing tool detects the emotion in a sentence and rephrases it.
+  
 
 ### 4. Group Chat Management
 - Supports group chats for team collaboration.
-- Paraphrasing tool helps modulate tone in group chats to limit the number of fights.
+- Paraphrasing tool helps in modulating tone in group chats to limit conflict in the workspace.
 - Provides real-time feedback to reduce conflicts and improve communication.
 
 ## Installation
