@@ -15,8 +15,10 @@ Images showing group chat and sentimental analysis result score
 Chatbot page and showing relevant content to calm down the user (based on sentimenatl analysis score by some mechanism)
 
 ![ec5](https://github.com/user-attachments/assets/ce36907b-b278-4f9d-a017-2235aec0ad48)
+![ec6](https://github.com/user-attachments/assets/d67430cd-3be8-409f-abec-ad89c2e4e3cb)
 
 Paraphase tool
 
-![ec9](https://github.com/user-attachments/assets/65238944-bd06-4b4a-a4bb-463cafc71ea2)
 ![ec11](https://github.com/user-attachments/assets/48a5de6c-6a88-42a1-ae2c-9f4388885ab2)
+![ec9](https://github.com/user-attachments/assets/65238944-bd06-4b4a-a4bb-463cafc71ea2)
+
