@@ -104,7 +104,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 1. Open the app and sign in using your credentials.
 2. Utilize the chat feature for seamless communication with colleagues.
-3. Leverage the AI chatbot for emotional support and professional paraphrasing suggestions.
+3. Leverage the AI chatbot for emotional support, professional paraphrasing suggestions and displaying memes.
 4. Monitor mood analysis and emotion tracking through the intuitive dashboard.
 
 ### Screenshots
