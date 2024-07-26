@@ -12,7 +12,7 @@ Images showing group chat and sentimental analysis result score
 ![ec3](https://github.com/user-attachments/assets/89c30969-b50e-4ffb-a751-47e26a28e83b)
 ![ec4](https://github.com/user-attachments/assets/6d478040-5094-41ec-adb7-177a8820b0ed)
 
-Chatbot page and showing relevant content to calm down the user (based on sentimenatl analysis score by some mechanism)
+Chatbot page and showing relevant content to calm down the user (based on sentimenatl analysis score and by some mechanism)
 
 ![ec5](https://github.com/user-attachments/assets/ce36907b-b278-4f9d-a017-2235aec0ad48)
 ![ec6](https://github.com/user-attachments/assets/d67430cd-3be8-409f-abec-ad89c2e4e3cb)
