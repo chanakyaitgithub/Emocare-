@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:google_generative_ai/google_generative_ai.dart';
 import 'package:intl/intl.dart';
 
 void main() {
@@ -35,10 +34,6 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   TextEditingController _userInput = TextEditingController();
 
-  static const apiKey = "";
-
-  final model = GenerativeModel(model: 'gemini-pro', apiKey: apiKey);
-
   final List<Message> _messages = [];
   final Map<String, List<double>> _emotionScores = {
     'joy': [],
@@ -57,16 +52,13 @@ class _ChatScreenState extends State<ChatScreen> {
     final message = _userInput.text;
 
     setState(() {
-      _messages
-          .add(Message(isUser: true, message: message, date: DateTime.now()));
+      _messages.add(Message(isUser: true, message: message, date: DateTime.now()));
     });
 
-    final content = [Content.text(message)];
-    final response = await model.generateContent(content);
+    final response = await _getChatbotResponse(message);
 
     setState(() {
-      _messages.add(Message(
-          isUser: false, message: response.text ?? "", date: DateTime.now()));
+      _messages.add(Message(isUser: false, message: response, date: DateTime.now()));
     });
 
     // Perform sentiment analysis for the sent message
@@ -90,8 +82,25 @@ class _ChatScreenState extends State<ChatScreen> {
     print('Sad Emotion Count: $count');
   }
 
+  Future<String> _getChatbotResponse(String userInput) async {
+    final url = Uri.parse('http://127.0.0.1:5000/chat');
+
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'text': userInput}),
+    );
+
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> data = json.decode(response.body);
+      return data['response'];
+    } else {
+      throw Exception('Failed to fetch chatbot response');
+    }
+  }
+
   Future<Map<String, dynamic>> _getSentimentResult(String userInput) async {
-    final url = Uri.parse('http://localhost:5000/predictSentiment');
+    final url = Uri.parse('http://127.0.0.1:5000/predictSentiment');
 
     final response = await http.post(
       url,
