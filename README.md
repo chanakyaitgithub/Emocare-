@@ -1,4 +1,4 @@
-# product images 
+# product outcome images 
 Login page
 
 ![ec1](https://github.com/user-attachments/assets/5e0aa4a5-b7f0-4f5d-bb1f-25149b7fa741)
