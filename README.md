@@ -143,11 +143,13 @@ The Chat Interface demonstrates the integration of the AI chatbot, enhancing use
 
 A page dedicated to uplifting content, such as memes, designed to enhance user mood.
 
-![ec11](https://github.com/user-attachments/assets/48a5de6c-6a88-42a1-ae2c-9f4388885ab2)
+
+![WhatsApp Image 2024-07-28 at 01 45 56_43d34dfc](https://github.com/user-attachments/assets/7bc1d280-e63f-4848-aa0f-1e8d34211f11)
 
 Evaluating text to paraphrase allows for refining communication in real-time.
 
-![ec9](https://github.com/user-attachments/assets/65238944-bd06-4b4a-a4bb-463cafc71ea2)
+
+![WhatsApp Image 2024-07-28 at 01 46 35_336aa07f](https://github.com/user-attachments/assets/ab38b6de-188e-401a-958d-274b0bf6bb76)
 
 The Paraphrasing Tool assists in modulating the tone of chat messages to foster positive dialogue.
 
