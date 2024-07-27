@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'home1.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
 
 class Home extends StatefulWidget {
   @override
@@ -14,7 +16,7 @@ class _HomeState extends State<Home> {
 
   final _auth = FirebaseAuth.instance;
 
-  String userEmail = ''; // Variable to store user email
+  String? errorMessage; // Variable to store error message
 
   @override
   Widget build(BuildContext context) {
@@ -44,9 +46,7 @@ class _HomeState extends State<Home> {
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
-                            SizedBox(
-                              height: 30,
-                            ),
+                            SizedBox(height: 30),
                             Text(
                               "Login",
                               style: TextStyle(
@@ -55,9 +55,7 @@ class _HomeState extends State<Home> {
                                 fontSize: 40,
                               ),
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20),
                             TextFormField(
                               controller: emailController,
                               decoration: InputDecoration(
@@ -84,9 +82,7 @@ class _HomeState extends State<Home> {
                               },
                               keyboardType: TextInputType.emailAddress,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20),
                             TextFormField(
                               controller: passwordController,
                               obscureText: true,
@@ -114,9 +110,13 @@ class _HomeState extends State<Home> {
                               },
                               keyboardType: TextInputType.emailAddress,
                             ),
-                            SizedBox(
-                              height: 20,
-                            ),
+                            SizedBox(height: 20),
+                            if (errorMessage != null)
+                              Text(
+                                errorMessage!,
+                                style: TextStyle(color: Colors.red),
+                              ),
+                            SizedBox(height: 20),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.deepOrange,
@@ -144,33 +144,34 @@ class _HomeState extends State<Home> {
   }
 
   void signIn(String email, String password) async {
-    if (_formkey.currentState!.validate()) {
-      try {
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: email,
-          password: password,
-        );
+    final url = Uri.http('192.168.232.68:3000', '/login');
 
-        // Store the user email
-        setState(() {
-          userEmail = email;
-        });
+    try {
+      final response = await http.post(
+        url,
+        body: {'email': email, 'password': password},
+      );
 
+      print('Response status: ${response.statusCode}');
+      print('Response body: ${response.body}');
+
+      if (response.statusCode == 200) {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) =>
-                HomeScreen(email: userEmail), // Pass email to HomeScreen
+            builder: (context) => HomeScreen(email: email),
           ),
         );
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-        }
+      } else {
+        setState(() {
+          errorMessage = 'Incorrect credentials. Please try again.';
+        });
       }
+    } catch (e) {
+      print('Error: $e');
+      setState(() {
+        errorMessage = 'An unexpected error occurred. Please try again.';
+      });
     }
   }
 }
