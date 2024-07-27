@@ -1,180 +1,226 @@
-import numpy as np
-from flask import Flask, jsonify, request
-from flask_cors import CORS
-from keras.models import load_model
-from keras.preprocessing.sequence import pad_sequences
-from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
-from langchain_core.output_parsers import StrOutputParser
-from langchain_community.chat_models import ChatOllama
-from langchain_core.messages import HumanMessage
-from langchain_community.chat_message_histories import ChatMessageHistory
-from langchain_core.chat_history import BaseChatMessageHistory
-from langchain_core.runnables.history import RunnableWithMessageHistory
-import logging
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 
-# Setup logging
-logging.basicConfig(level=logging.DEBUG)
+void main() {
+  runApp(const MyApp());
+}
 
-# Load your TensorFlow model and tokenizer
-model_path = 'sentiment1_model.h5'
-tokenizer_path = 'tokenizer1_word_index.npy'
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
 
-# Load the model
-sentiment_model = load_model(model_path)
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Sentiment Analysis & Paraphrase Demo',
+      debugShowCheckedModeBanner: false,
+      home: const SentimentAnalysisScreen(),
+    );
+  }
+}
 
-# Load the tokenizer
-tokenizer = np.load(tokenizer_path, allow_pickle=True).item()
+class SentimentAnalysisScreen extends StatefulWidget {
+  const SentimentAnalysisScreen({Key? key}) : super(key: key);
 
-# Define labels
-labels = ['angry', 'disgust', 'fear', 'joy', 'happy', 'sad', 'surprise', 'neutral']
+  @override
+  _SentimentAnalysisScreenState createState() =>
+      _SentimentAnalysisScreenState();
+}
 
-# Preprocess input for sentiment analysis
-def preprocess_input(input_text):
-    max_len = 100
-    sequences = []
-    for word in input_text.split():
-        word_index = tokenizer.get(word.lower(), 0)
-        sequences.append(word_index)
-    X = pad_sequences([sequences], maxlen=max_len)
-    return X
+class _SentimentAnalysisScreenState extends State<SentimentAnalysisScreen> {
+  TextEditingController _userInput = TextEditingController();
+  String? _highestEmotion;
 
-# Initialize ChatOllama model
-chat_model = ChatOllama(model="mistral")
+  Future<void> _getSentimentResult(String userInput) async {
+    final url = Uri.parse('http://localhost:5000/predictSentiment');
 
-system_prompt = (
-    "You are a warm, supportive friend offering emotional support. "
-    "Speak conversationally and with compassion. Listen actively, validate feelings, and suggest positive steps. "
-    "Share relatable experiences if appropriate. Recommend professional help for serious issues. Avoid medical advice. "
-    "Encourage self-care and coping strategies."
-)
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'text': userInput}),
+    );
 
-paraphrase_prompt = (
-    "You are a skilled paraphraser. Rephrase the given text while maintaining its original meaning."
-)
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> sentimentResult = json.decode(response.body);
 
-prompt = ChatPromptTemplate.from_messages(
-    [
-        ("system", system_prompt),
-        MessagesPlaceholder(variable_name="messages"),
-    ]
-)
+      // Find the emotion with the highest value
+      double maxValue = double.negativeInfinity;
+      String? highestEmotion;
+      sentimentResult.forEach((key, value) {
+        if (value > maxValue) {
+          maxValue = value;
+          highestEmotion = key;
+        }
+      });
 
-paraphrase_prompt_template = ChatPromptTemplate.from_messages(
-    [
-        ("system", paraphrase_prompt),
-        MessagesPlaceholder(variable_name="messages"),
-    ]
-)
+      setState(() {
+        _highestEmotion = highestEmotion;
+      });
 
-store = {}
+      // Navigate to the paraphrase screen
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => ParaphraseScreen(userInput: userInput),
+        ),
+      );
+    } else {
+      throw Exception('Failed to fetch sentiment analysis result');
+    }
+  }
 
-def get_session_history(session_id: str) -> BaseChatMessageHistory:
-    if session_id not in store:
-        store[session_id] = ChatMessageHistory()
-    return store[session_id]
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Sentiment Analysis'),
+      ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('fan/bg6.png'),
+                  fit: BoxFit.fill,
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  TextField(
+                    controller: _userInput,
+                    style: TextStyle(color: Colors.black),
+                    decoration: InputDecoration(
+                      hintText: 'Enter your message',
+                      hintStyle: TextStyle(color: Colors.black),
+                      border: OutlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.black, // Change the color here
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  ElevatedButton(
+                    onPressed: () {
+                      _getSentimentResult(_userInput.text);
+                    },
+                    child: Text('Analyze Sentiment & Paraphrase'),
+                  ),
+                  SizedBox(height: 20),
+                  if (_highestEmotion != null)
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text('Highest Emotion: $_highestEmotion',
+                          style: TextStyle(fontSize: 20, color: Colors.black)),
+                    ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
 
-chat_chain = prompt | chat_model
-paraphrase_chain = paraphrase_prompt_template | chat_model
+class ParaphraseScreen extends StatefulWidget {
+  final String userInput;
+  const ParaphraseScreen({Key? key, required this.userInput}) : super(key: key);
 
-with_message_history = RunnableWithMessageHistory(
-    chat_chain,
-    get_session_history,
-    input_messages_key="messages"
-)
+  @override
+  _ParaphraseScreenState createState() => _ParaphraseScreenState();
+}
 
-paraphrase_with_message_history = RunnableWithMessageHistory(
-    paraphrase_chain,
-    get_session_history,
-    input_messages_key="messages"
-)
+class _ParaphraseScreenState extends State<ParaphraseScreen> {
+  final TextEditingController _textController = TextEditingController();
+  String _paraphrasedText = '';
+  bool _isLoading = false;
 
-config = {"configurable": {"session_id": "chat1"}}
+  Future<void> paraphraseText() async {
+    setState(() {
+      _isLoading = true;
+    });
 
-# Create Flask app
-app = Flask(_name_)
-CORS(app)
+    final url = Uri.parse('http://127.0.0.1:5000/paraphrase');
 
-# Define sentiment analysis API endpoint
-@app.route('/predictSentiment', methods=['POST'])
-def predict_sentiment():
-    try:
-        logging.debug("predict_sentiment endpoint hit")
-        # Get input text from request
-        input_text = request.json.get('text', '')
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'message': widget.userInput}),
+    );
 
-        if not input_text:
-            logging.error("No text provided")
-            return jsonify({'error': 'No text provided'}), 400
+    if (response.statusCode == 200) {
+      final Map<String, dynamic> responseData = json.decode(response.body);
+      setState(() {
+        _paraphrasedText = responseData['paraphrase'];
+        _isLoading = false;
+      });
+    } else {
+      setState(() {
+        _paraphrasedText = 'Error: Unable to paraphrase text';
+        _isLoading = false;
+      });
+    }
+  }
 
-        # Preprocess input
-        preprocessed_input = preprocess_input(input_text)
-
-        # Make prediction
-        prediction = sentiment_model.predict(preprocessed_input)
-
-        # Calculate percentages
-        total_probability = np.sum(prediction)
-        if total_probability == 0:
-            total_probability = 1  # Avoid division by zero
-        percentage_values = (prediction / total_probability) * 100
-
-        # Convert numpy array to Python list
-        percentage_list = percentage_values[0].tolist()
-
-        # Create response object
-        response = {label: percentage for label, percentage in zip(labels, percentage_list)}
-
-        # Send response
-        return jsonify(response), 200
-
-    except Exception as e:
-        logging.error('Error:', e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-
-# Define chat API endpoint
-@app.route('/chat', methods=['POST'])
-def chat():
-    try:
-        logging.debug("chat endpoint hit")
-        data = request.json
-        session_id = "chat1"
-        user_input = data.get("message")
-
-        def generate_response(question):
-            response = with_message_history.invoke(
-                {'messages': [HumanMessage(question)]},
-                config=config
-            )
-            return response.content
-
-        response = generate_response(user_input)
-        return jsonify({"response": response})
-    except Exception as e:
-        logging.error('Error:', e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-
-# Define paraphrase API endpoint
-@app.route('/paraphrase', methods=['POST'])
-def paraphrase():
-    try:
-        logging.debug("paraphrase endpoint hit")
-        data = request.json
-        session_id = "paraphrase1"
-        user_input = data.get("message")
-
-        def generate_paraphrase(text):
-            response = paraphrase_with_message_history.invoke(
-                {'messages': [HumanMessage(text)]},
-                config={"configurable": {"session_id": session_id}}
-            )
-            return response.content
-
-        response = generate_paraphrase(user_input)
-        return jsonify({"paraphrase": response})
-    except Exception as e:
-        logging.error('Error:', e)
-        return jsonify({'error': 'Internal Server Error'}), 500
-
-# Run the app
-if _name_ == '_main_':
-    app.run(debug=True, use_reloader=False)
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Paraphrase Demo'),
+      ),
+      body: Stack(
+        children: [
+          Positioned.fill(
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage('fan/bg5.png'),
+                  fit: BoxFit.fill,
+                  colorFilter: ColorFilter.mode(
+                      Colors.black.withOpacity(1.0), BlendMode.dstATop),
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(
+                  'Original Message: ${widget.userInput}',
+                  style: TextStyle(
+                      fontWeight: FontWeight.bold, color: Colors.black),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: paraphraseText,
+                  child: _isLoading
+                      ? CircularProgressIndicator()
+                      : const Text('Paraphrase'),
+                ),
+                SizedBox(height: 20),
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Text(
+                      _paraphrasedText,
+                      style: TextStyle(fontSize: 16, color: Colors.black),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
