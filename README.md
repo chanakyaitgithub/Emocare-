@@ -40,8 +40,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 ### 3. Emotion Regulation and Paraphrasing
 - Detects and addresses emotionally charged conversations.
 - Promotes positive dialogue and reduces conflict through paraphrasing.
-- Paraphasing tool detects the emotion in a sentence and rephrases it.
-  
+- Paraphrasing tool detects the emotion in a sentence and rephrases it.
 
 ### 4. Group Chat Management
 - Supports group chats for team collaboration.
@@ -54,51 +53,54 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 - Python 3.7+
 - Flutter SDK
-- Firebase account
+- MongoDB account
 - Virtual environment (optional but recommended)
 
 ### Steps
 
 1. Clone the repository:
-    sh
+    ```sh
     git clone https://github.com/yourusername/emocare-plus.git
+    ```
     
 2. Navigate to the project directory:
-    sh
+    ```sh
     cd emocare-plus
+    ```
     
 3. Create and activate a virtual environment:
-    sh
+    ```sh
     python -m venv venv
     source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
     
 4. Install the required packages:
-    sh
+    ```sh
     pip install -r requirements.txt
-    
+    ```
 
-5. Set up Firebase:
-    - Follow [Firebase setup instructions](https://firebase.google.com/docs/flutter/setup).
-    - Add google-services.json and GoogleService-Info.plist to the respective folders.
+5. Set up MongoDB:
+    - Follow [MongoDB setup instructions](https://docs.mongodb.com/manual/installation/).
+    - Configure the connection in the application settings.
 
 6. Install Ollama by following the instructions on the [Ollama website](https://ollama.com).
 
 7. Download and run the Mistral model:
-    sh
+    ```sh
     ollama run mistral
-    
+    ```
 
 8. Run the Flask server:
-    sh
+    ```sh
     python nlpflask.py
-    
+    ```
 
 9. Navigate to the Flutter project directory and run the app:
-    sh
+    ```sh
     cd flutter_app
     flutter pub get
     flutter run
-    
+    ```
 
 ## Usage
 
@@ -121,16 +123,13 @@ The Features screen highlights the core functionalities of Emocare.
 
 ![ec3](https://github.com/user-attachments/assets/89c30969-b50e-4ffb-a751-47e26a28e83b)
 
-
 The Group Chat Interface facilitates team collaboration.
 
 ![ec4](https://github.com/user-attachments/assets/6d478040-5094-41ec-adb7-177a8820b0ed)
 
-
 Detailed emotion metrics and analytics offer insights into emotional trends and patterns.
 
 ![ec5](https://github.com/user-attachments/assets/ce36907b-b278-4f9d-a017-2235aec0ad48)
-
 
 The Chat Interface demonstrates the integration of the AI chatbot, enhancing user interaction.
 
@@ -151,7 +150,7 @@ The Paraphrasing Tool assists in modulating the tone of chat messages to foster 
 - *Machine Learning:* TensorFlow, Scikit-Learn, Mistral 7B
 - *Backend:* Flask (for hosting sentiment analysis, paraphrasing, and LLM models)
 - *Frontend:* Flutter
-- *Database and Authentication:* Firebase
+- *Database and Authentication:* MongoDB
 
 ## Target Market
 
@@ -169,10 +168,10 @@ The Paraphrasing Tool assists in modulating the tone of chat messages to foster 
 Contributions are welcomed! To contribute:
 
 1. Fork the repository.
-2. Create a new branch (git checkout -b feature-branch).
+2. Create a new branch (`git checkout -b feature-branch`).
 3. Make your modifications.
-4. Commit your changes (git commit -m 'Add some feature').
-5. Push to your branch (git push origin feature-branch).
+4. Commit your changes (`git commit -m 'Add some feature'`).
+5. Push to your branch (`git push origin feature-branch`).
 6. Open a pull request.
 
 ## License
@@ -186,6 +185,3 @@ For inquiries or suggestions, please reach out:
 - *Name:* Chanakya R
 - *Email:* chanakya7707@gmail.com
 - *GitHub:* [chanakyaitgithub](https://github.com/chanakyaitgithub)
-
-
-
