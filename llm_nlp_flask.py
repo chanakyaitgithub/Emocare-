@@ -10,6 +10,10 @@ from langchain_core.messages import HumanMessage
 from langchain_community.chat_message_histories import ChatMessageHistory
 from langchain_core.chat_history import BaseChatMessageHistory
 from langchain_core.runnables.history import RunnableWithMessageHistory
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.DEBUG)
 
 # Load your TensorFlow model and tokenizer
 model_path = 'sentiment1_model.h5'
@@ -35,7 +39,7 @@ def preprocess_input(input_text):
     return X
 
 # Initialize ChatOllama model
-model = ChatOllama(model="mistral")
+chat_model = ChatOllama(model="mistral")
 
 system_prompt = (
     "You are a warm, supportive friend offering emotional support. "
@@ -44,9 +48,20 @@ system_prompt = (
     "Encourage self-care and coping strategies."
 )
 
+paraphrase_prompt = (
+    "You are a skilled paraphraser. Rephrase the given text while maintaining its original meaning."
+)
+
 prompt = ChatPromptTemplate.from_messages(
     [
         ("system", system_prompt),
+        MessagesPlaceholder(variable_name="messages"),
+    ]
+)
+
+paraphrase_prompt_template = ChatPromptTemplate.from_messages(
+    [
+        ("system", paraphrase_prompt),
         MessagesPlaceholder(variable_name="messages"),
     ]
 )
@@ -58,13 +73,21 @@ def get_session_history(session_id: str) -> BaseChatMessageHistory:
         store[session_id] = ChatMessageHistory()
     return store[session_id]
 
-chain = prompt | model
+chat_chain = prompt | chat_model
+paraphrase_chain = paraphrase_prompt_template | chat_model
 
 with_message_history = RunnableWithMessageHistory(
-    chain,
+    chat_chain,
     get_session_history,
     input_messages_key="messages"
 )
+
+paraphrase_with_message_history = RunnableWithMessageHistory(
+    paraphrase_chain,
+    get_session_history,
+    input_messages_key="messages"
+)
+
 config = {"configurable": {"session_id": "chat1"}}
 
 # Create Flask app
@@ -75,10 +98,12 @@ CORS(app)
 @app.route('/predictSentiment', methods=['POST'])
 def predict_sentiment():
     try:
+        logging.debug("predict_sentiment endpoint hit")
         # Get input text from request
         input_text = request.json.get('text', '')
 
         if not input_text:
+            logging.error("No text provided")
             return jsonify({'error': 'No text provided'}), 400
 
         # Preprocess input
@@ -103,25 +128,52 @@ def predict_sentiment():
         return jsonify(response), 200
 
     except Exception as e:
-        print('Error:', e)
+        logging.error('Error:', e)
         return jsonify({'error': 'Internal Server Error'}), 500
 
 # Define chat API endpoint
 @app.route('/chat', methods=['POST'])
 def chat():
-    data = request.json
-    session_id = "chat1"
-    user_input = data.get("message")
-    
-    def generate_response(question):
-        response = with_message_history.invoke(
-            {'messages': [HumanMessage(question)]},
-            config=config
-        )
-        return response.content
+    try:
+        logging.debug("chat endpoint hit")
+        data = request.json
+        session_id = "chat1"
+        user_input = data.get("message")
 
-    response = generate_response(user_input)
-    return jsonify({"response": response})
+        def generate_response(question):
+            response = with_message_history.invoke(
+                {'messages': [HumanMessage(question)]},
+                config=config
+            )
+            return response.content
+
+        response = generate_response(user_input)
+        return jsonify({"response": response})
+    except Exception as e:
+        logging.error('Error:', e)
+        return jsonify({'error': 'Internal Server Error'}), 500
+
+# Define paraphrase API endpoint
+@app.route('/paraphrase', methods=['POST'])
+def paraphrase():
+    try:
+        logging.debug("paraphrase endpoint hit")
+        data = request.json
+        session_id = "paraphrase1"
+        user_input = data.get("message")
+
+        def generate_paraphrase(text):
+            response = paraphrase_with_message_history.invoke(
+                {'messages': [HumanMessage(text)]},
+                config={"configurable": {"session_id": session_id}}
+            )
+            return response.content
+
+        response = generate_paraphrase(user_input)
+        return jsonify({"paraphrase": response})
+    except Exception as e:
+        logging.error('Error:', e)
+        return jsonify({'error': 'Internal Server Error'}), 500
 
 # Run the app
 if _name_ == '_main_':
