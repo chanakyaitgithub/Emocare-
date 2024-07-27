@@ -53,7 +53,8 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 - Python 3.7+
 - Flutter SDK
-- MongoDB account
+- PostgreSQL account
+- Node.js
 - Virtual environment (optional but recommended)
 
 ### Steps
@@ -79,8 +80,8 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     pip install -r requirements.txt
     ```
 
-5. Set up MongoDB:
-    - Follow [MongoDB setup instructions](https://docs.mongodb.com/manual/installation/).
+5. Set up PostgreSQL:
+    - Follow [PostgreSQL setup instructions](https://www.postgresql.org/docs/current/tutorial-install.html).
     - Configure the connection in the application settings.
 
 6. Install Ollama by following the instructions on the [Ollama website](https://ollama.com).
@@ -90,12 +91,17 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     ollama run mistral
     ```
 
-8. Run the Flask server:
+8. Run the Node.js server:
+    ```sh
+    node server.js
+    ```
+
+9. Run the Flask server:
     ```sh
     python nlpflask.py
     ```
 
-9. Navigate to the Flutter project directory and run the app:
+10. Navigate to the Flutter project directory and run the app:
     ```sh
     cd flutter_app
     flutter pub get
@@ -148,9 +154,9 @@ The Paraphrasing Tool assists in modulating the tone of chat messages to foster 
 ## Technologies Used
 
 - *Machine Learning:* TensorFlow, Scikit-Learn, Mistral 7B
-- *Backend:* Flask (for hosting sentiment analysis, paraphrasing, and LLM models)
+- *Backend:* Flask (for hosting sentiment analysis, paraphrasing, and LLM models), Node.js (for hosting PostgreSQL database)
 - *Frontend:* Flutter
-- *Database and Authentication:* MongoDB
+- *Database and Authentication:* PostgreSQL
 
 ## Target Market
 
