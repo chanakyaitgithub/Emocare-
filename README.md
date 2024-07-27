@@ -164,11 +164,6 @@ The Paraphrasing Tool assists in modulating the tone of chat messages to foster 
 - *Team Leaders and Organizations:* Improve team dynamics and support.
 - *Tech-savvy Professionals:* Utilize AI-driven solutions for workplace enhancement.
 
-## Revenue Strategy
-
-- *Subscription-based Model:* Organizations are billed based on user and conversation volume.
-- *Partnerships:* Explore collaborations with HR consulting firms and wellness programs for enterprise adoption.
-
 ## Contributing
 
 Contributions are welcomed! To contribute:
