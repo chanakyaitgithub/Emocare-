@@ -84,6 +84,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     ```sh
     pip install -r requirements.txt
     ```
+5. For NLP model which is done using tensorflow , download the dataset from https://www.kaggle.com/datasets/chanakyar/emotion-dataset-link and run the ipynb code with your prefered file location for loading the dataset.
 
 ### 5. Set up PostgreSQL:
 
@@ -183,6 +184,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     flutter run
     ```
 14. Add the pictures in the 'fan' folder to the file 'pubspec.yaml' under assets section.
+
 
 ## Usage
 
