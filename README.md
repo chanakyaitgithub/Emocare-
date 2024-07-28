@@ -85,18 +85,48 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     pip install -r requirements.txt
     ```
 
-5. Set up PostgreSQL:
-    - Follow [PostgreSQL setup instructions](https://www.postgresql.org/docs/current/tutorial-install.html).
-    - Configure the connection in the application settings.
-    - create a table named user with email, password as two text parameters with code
-      ```sh
-      CREATE TABLE user (
-    id SERIAL PRIMARY KEY,
-    email TEXT UNIQUE NOT NULL,
-    password TEXT NOT NULL
-    );
-   ```
-   - create a table named message
+### 5. Set up PostgreSQL:
+
+1. **Follow PostgreSQL setup instructions:**
+   - Refer to the [PostgreSQL installation tutorial](https://www.postgresql.org/docs/current/tutorial-install.html) to install PostgreSQL on your system.
+
+2. **Configure the connection in the application settings:**
+   - Configure the database connection in your application settings file (e.g., `settings.py` for a Django application, `config.js` for a Node.js application, etc.).
+
+3. **Create a table named `user` with `email` and `password` as text parameters:**
+   - Use the following SQL code to create the `user` table:
+     ```sql
+     CREATE TABLE user (
+         id SERIAL PRIMARY KEY,
+         email TEXT UNIQUE NOT NULL,
+         password TEXT NOT NULL
+     );
+     ```
+
+4. **Create a table named `messages` with `sender` and `message` as text inputs and `created_at` as a timestamp:**
+   - Use the following SQL code to create the `messages` table:
+     ```sql
+     CREATE TABLE messages (
+         id SERIAL PRIMARY KEY,
+         sender TEXT NOT NULL,
+         message TEXT NOT NULL,
+         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+     );
+     ```
+
+### Description of the tables:
+
+- **user table:**
+  - `id SERIAL PRIMARY KEY`: An auto-incrementing unique identifier for each user.
+  - `email TEXT UNIQUE NOT NULL`: The email address of the user, which must be unique and cannot be null.
+  - `password TEXT NOT NULL`: The password of the user, which cannot be null.
+
+- **messages table:**
+  - `id SERIAL PRIMARY KEY`: An auto-incrementing unique identifier for each message.
+  - `sender TEXT NOT NULL`: The sender of the message, which cannot be null.
+  - `message TEXT NOT NULL`: The content of the message, which cannot be null.
+  - `created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP`: The timestamp when the message was created, with the default value set to the current time.
+
 
 
 7. Install Ollama by following the instructions on the [Ollama website](https://ollama.com).
