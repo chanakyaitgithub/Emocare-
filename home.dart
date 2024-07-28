@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Chat Selection',
       theme: ThemeData(
-        primarySwatch: Colors.deepOrange,
+        primarySwatch: Color.fromARGB(255, 16, 233, 139),
       ),
       home: HomeScreen(email: 'example@gmail.com'), // Pass the email here
     );
@@ -43,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'fan/bg4.png', // Replace with your background image asset path
+              'fan/m1.jpeg', // Replace with your background image asset path
               fit: BoxFit.fill,
             ),
           ),
@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                   child: Text('Chat App',
-                      style: TextStyle(color: Colors.deepOrange)),
+                      style: TextStyle(color: Color.fromARGB(255, 16, 233, 139))),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -82,7 +82,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                   child: Text('Chatbot',
-                      style: TextStyle(color: Colors.deepOrange)),
+                      style: TextStyle(color: Color.fromARGB(255, 16, 233, 139))),
                 ),
                 SizedBox(height: 20),
                 ElevatedButton(
@@ -91,7 +91,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text(
                     'HR View',
-                    style: TextStyle(color: Colors.deepOrange),
+                    style: TextStyle(color: Color.fromARGB(255, 16, 233, 139)),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -106,7 +106,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   },
                   child: Text('EmoCorrect',
                       style: TextStyle(
-                          color: Colors.deepOrange)), // Button for EmoCorrect
+                          color: Color.fromARGB(255, 16, 233, 139))), // Button for EmoCorrect
                 ),
               ],
             ),
@@ -119,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.deepOrange,
+                Color.fromARGB(255, 16, 233, 139),
               ),
               child: Text('Sentiment Analysis Results'),
             ),
