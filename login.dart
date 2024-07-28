@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
           // Background image
           Positioned.fill(
             child: Image.asset(
-              'fan/bg4.png', // Replace with your image asset path
+              'fan/m1.jpeg', // Replace with your image asset path
               fit: BoxFit.fill,
             ),
           ),
@@ -51,7 +51,7 @@ class _HomeState extends State<Home> {
                               "Login",
                               style: TextStyle(
                                 fontWeight: FontWeight.bold,
-                                color: Colors.deepOrange,
+                                color: Color.fromARGB(255, 16, 233, 139),
                                 fontSize: 40,
                               ),
                             ),
@@ -119,7 +119,7 @@ class _HomeState extends State<Home> {
                             SizedBox(height: 20),
                             ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                backgroundColor: Colors.deepOrange,
+                                backgroundColor: Color.fromARGB(255, 16, 233, 139),
                                 foregroundColor: Colors.white,
                                 shape: RoundedRectangleBorder(),
                               ),
