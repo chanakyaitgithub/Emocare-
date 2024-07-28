@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
+        colorScheme: ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 16, 233, 139)),
         useMaterial3: true,
       ),
       home: const ChatScreen(),
@@ -176,7 +176,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Container(
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('fan/bg5.png'),
+            image: AssetImage('fan/m3.jpeg'),
             fit: BoxFit.cover,
             colorFilter: ColorFilter.mode(
                 Colors.black.withOpacity(1.0), BlendMode.dstATop),
@@ -220,7 +220,7 @@ class _ChatScreenState extends State<ChatScreen> {
                     iconSize: 30,
                     style: ButtonStyle(
                       backgroundColor:
-                          MaterialStateProperty.all(Colors.deepOrange),
+                          MaterialStateProperty.all(Color.fromARGB(255, 16, 233, 139)),
                       foregroundColor: MaterialStateProperty.all(Colors.white),
                       shape: MaterialStateProperty.all(CircleBorder()),
                     ),
@@ -241,7 +241,7 @@ class _ChatScreenState extends State<ChatScreen> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.deepOrange,
+                color: Color.fromARGB(255, 16, 233, 139),
               ),
               child: Text('Sentiment Analysis Results'),
             ),
@@ -286,7 +286,7 @@ class Messages extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 15)
           .copyWith(left: isUser ? 100 : 10, right: isUser ? 10 : 100),
       decoration: BoxDecoration(
-        color: isUser ? Colors.deepOrange : Colors.white,
+        color: isUser ? Color.fromARGB(255, 16, 233, 139) : Colors.white,
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(10),
           bottomLeft: isUser ? Radius.circular(10) : Radius.zero,
