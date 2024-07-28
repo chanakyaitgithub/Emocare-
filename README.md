@@ -2,6 +2,7 @@
 
 To create a productive and supportive workplace, we are implementing AI-driven tools for emotion and stress management. Leveraging artificial general intelligence (AGI), our approach includes Emocare, a personalized AI chatbot designed to manage emotions and stress, and a workplace chat app that screens emotions, analyzes moods, and detects emotionally charged conversations. Additionally, we offer a chat paraphrasing tool to help modulate tone and intent in professional communication. Emocare ensures user privacy and data protection with proper certifications. It calculates mean emotion values over time for proactive support, provides calming content like memes and videos, and promotes positive dialogue to reduce conflicts.
 
+
 ## Table of Contents
 
 - [Emocare](#emocare)
@@ -17,15 +18,18 @@ To create a productive and supportive workplace, we are implementing AI-driven t
     - [Steps](#steps)
   - [Usage](#usage)
   - [Technologies Used](#technologies-used)
-  - [Target Market](#target-market)
+  - [Target Audience](#target-audience)
   - [Revenue Strategy](#revenue-strategy)
-  - [Contributing](#contributing)
+  - [Contributions](#contributions)
+  - [FOSS Community Contributions](#foss-community-contributions)
   - [License](#license)
   - [Contact](#contact)
+
 
 ## Introduction
 
 Emocare+ is a workplace chatting app equipped with advanced AI capabilities for emotion screening, mood analysis, and chat paraphrasing. It aims to improve employee well-being and communication by providing real-time emotional support and feedback.
+
 
 ## Features
 
@@ -46,6 +50,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 - Supports group chats for team collaboration.
 - Paraphrasing tool helps in modulating tone in group chats to limit conflict in the workspace.
 - Provides real-time feedback to reduce conflicts and improve communication.
+
 
 ## Installation
 
@@ -101,7 +106,15 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     python nlpflask.py
     ```
 
-10. Navigate to the Flutter project directory and run the app:
+10. Download and install flutter with the following instructions:
+    ->download flutter sdk
+    ->set path in environment variables(settings)
+    ->Install Android Studio from website
+    ->Download command line tools from android studio.
+    -> Accept Licences.
+    -> Install flutter and dart pluggins
+    
+11. Navigate to the Flutter project directory and run the app:
     ```sh
     cd flutter_app
     flutter pub get
@@ -114,6 +127,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 2. Utilize the chat feature for seamless communication with colleagues.
 3. Leverage the AI chatbot for emotional support, professional paraphrasing suggestions and displaying memes.
 4. Monitor mood analysis and emotion tracking through the intuitive dashboard.
+
 
 ### Screenshots
 
@@ -152,33 +166,48 @@ Evaluating text to paraphrase allows for refining communication in real-time.
 
 The Paraphrasing Tool assists in modulating the tone of chat messages to foster positive dialogue.
 
+
 ## Technologies Used
 
-- *Machine Learning:* TensorFlow, Scikit-Learn, Mistral 7B
-- *Backend:* Flask (for hosting sentiment analysis, paraphrasing, and LLM models), Node.js (for hosting PostgreSQL database)
-- *Frontend:* Flutter
-- *Database and Authentication:* PostgreSQL
+- Machine Learning: TensorFlow, Scikit-Learn, Mistral 7B
+- Backend: Flask (for hosting sentiment analysis, paraphrasing, and LLM models), Node.js (for hosting PostgreSQL database)
+- Frontend: Flutter
+- Database and Authentication: PostgreSQL
 
-## Target Market
 
-- *HR Departments:* Enhance employee well-being and communication.
-- *Team Leaders and Organizations:* Improve team dynamics and support.
-- *Tech-savvy Professionals:* Utilize AI-driven solutions for workplace enhancement.
+## Target Audience
 
-## Contributing
+- HR Departments: Enhance employee well-being and communication.
+- Team Leaders and Organizations: Improve team dynamics and support by managing conflict and stress in the workplace.
+- Tech-savvy Professionals: Utilize AI-driven solutions for workplace enhancement.
 
-Contributions are welcomed! To contribute:
+
+## Contributions
+
+Contributions are welcome! To contribute code::
 
 1. Fork the repository.
-2. Create a new branch (`git checkout -b feature-branch`).
+2. Create a new branch (git checkout -b feature-branch).
 3. Make your modifications.
-4. Commit your changes (`git commit -m 'Add some feature'`).
-5. Push to your branch (`git push origin feature-branch`).
-6. Open a pull request.
+4. Commit your changes (git commit -m 'Add some feature').
+5. Push to your branch (git push origin feature-branch).
+6. Open and submit a pull request.
+
+
+## FOSS Community Contributions
+
+1. Code contributions (as mentioned above) to help improve core functionalities and features
+2. Test existing features and provide insights for model training to improve user experience
+3. Help in design of UI/UX with the help of user research and to help with front end optimisation.
+4. Create an Issue Tracker forum with the expansion of the product's features and user base
+5. Organize workshops or engage in raising awareness about the product
+6. Write tutorials and example usage for the project
+ 
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE.txt) file for details.
+
 
 ## Contact
 
