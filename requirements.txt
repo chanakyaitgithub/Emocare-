@@ -1,0 +1,9 @@
+tensorflow==2.15.0
+flask
+langchain_core
+keras
+neattext
+numpy
+langchain_community
+flask_cors
+
