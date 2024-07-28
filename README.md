@@ -160,6 +160,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     flutter pub get
     flutter run
     ```
+13. Add the pictures in the 'fan' folder to the file 'pubspec.yaml' under assets section.
 
 ## Usage
 
