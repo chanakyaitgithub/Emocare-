@@ -84,7 +84,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     ```sh
     pip install -r requirements.txt
     ```
-5. For NLP model which is done using tensorflow , download the dataset from https://github.com/Jcharis/end2end-nlp-project/tree/main/data there will be the original dataset note that if it not works try using this link https://www.kaggle.com/datasets/chanakyar/emotion-dataset-link and run the ipynb code with your prefered file location for loading the dataset.
+5. For NLP model which is done using tensorflow , download the dataset from https://github.com/Jcharis/end2end-nlp-project/tree/main/data and run the ipynb code with your prefered file location for loading the dataset.
 
 ### 5. Set up PostgreSQL:
 
