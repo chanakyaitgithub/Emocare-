@@ -71,7 +71,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     
 2. Navigate to the project directory:
     ```sh
-    cd emocare-plus
+    cd emocare-
     ```
     
 3. Create and activate a virtual environment:
