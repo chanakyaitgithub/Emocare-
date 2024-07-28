@@ -102,7 +102,11 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
          password TEXT NOT NULL
      );
      ```
-
+  - insert users using
+    ```sql
+    INSERT INTO user (email, password)
+    VALUES ('user email', 'user password');
+    ```
 4. **Create a table named `messages` with `sender` and `message` as text inputs and `created_at` as a timestamp:**
    - Use the following SQL code to create the `messages` table:
      ```sql
