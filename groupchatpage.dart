@@ -42,7 +42,7 @@ class _ChatPageState extends State<ChatPage> {
           children: [
             DrawerHeader(
               decoration: BoxDecoration(
-                color: Colors.deepOrange,
+                color: Color.fromARGB(255, 16, 233, 139),
               ),
               child: Text('Sentiment Analysis Results'),
             ),
@@ -59,7 +59,7 @@ class _ChatPageState extends State<ChatPage> {
         children: [
           Positioned.fill(
             child: Image.asset(
-              'fan/bg5.png', // Replace with your image asset path
+              'fan/m3.jpeg', // Replace with your image asset path
               fit: BoxFit.cover,
             ),
           ),
@@ -283,7 +283,7 @@ class MessageBubble extends StatelessWidget {
                     bottomLeft: Radius.circular(30.0),
                   ),
             elevation: 5.0,
-            color: isMe ? Colors.deepOrange : Colors.white,
+            color: isMe ? Color.fromARGB(255, 16, 233, 139) : Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
               child: Column(
