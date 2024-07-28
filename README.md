@@ -119,34 +119,36 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 Below are some examples of Emocare in action:
 
-![Screenshot 2024-07-28 075522](https://github.com/user-attachments/assets/c8b490e3-7328-40f9-afef-bc7dab97253d)
+![Screenshot 2024-07-28 075522](https://github.com/user-attachments/assets/af2fe1e2-519e-4151-a34b-a374ec8fc2bc)
+
 
 The User Login Page provides a streamlined access point to the application.
 
-![Screenshot 2024-07-28 075557](https://github.com/user-attachments/assets/fad66401-716a-4a80-84c2-02cec41c8a9d)
+![Screenshot 2024-07-28 075557](https://github.com/user-attachments/assets/7b2e5c93-e85e-47c5-a388-bccc0d25aee1)
 
 The Features screen highlights the core functionalities of Emocare.
 
-![Screenshot 2024-07-28 075904](https://github.com/user-attachments/assets/bc9bc0d2-3dfe-42f9-9226-e6db0f795dfc)
+![Screenshot 2024-07-28 075904](https://github.com/user-attachments/assets/b73d4fa1-ed1b-4a77-afe3-e65db59efbde)
 
 The Group Chat Interface facilitates team collaboration.
 
-![Screenshot 2024-07-28 075924](https://github.com/user-attachments/assets/2b2047dc-a973-4725-898b-4f65a1a77768)
+![Screenshot 2024-07-28 075924](https://github.com/user-attachments/assets/b8ea266f-17de-440e-aa42-5f462271ec60)
 
 Detailed emotion metrics and analytics offer insights into emotional trends and patterns.
 
-![Screenshot 2024-07-28 080022](https://github.com/user-attachments/assets/4d7d47e2-08a8-482a-a95c-6c60253e78c1)
+![Screenshot 2024-07-28 080022](https://github.com/user-attachments/assets/9f14f32b-14c8-4b72-8894-4791bc2a14d2)
 
 The Chat Interface demonstrates the integration of the AI chatbot, enhancing user interaction.
 
-![Screenshot 2024-07-28 080339](https://github.com/user-attachments/assets/ee5fd9ba-a6b8-4a85-8e89-f18bb2b2806f)
+![Screenshot 2024-07-28 080339](https://github.com/user-attachments/assets/f37c0a9d-ea26-4d4c-909d-3f99f2402b83)
 
 A page dedicated to uplifting content, such as memes, designed to enhance user mood.
-![Screenshot 2024-07-28 080506](https://github.com/user-attachments/assets/53e849e5-e2ee-4a4c-97e8-2a4629783b75)
+
+![Screenshot 2024-07-28 080506](https://github.com/user-attachments/assets/183321b7-0de0-4de4-a4ee-2b5cbe883049)
 
 Evaluating text to paraphrase allows for refining communication in real-time.
 
-![Screenshot 2024-07-28 080549](https://github.com/user-attachments/assets/c59badd5-0899-4da0-9e3b-8f8913ff27ff)
+![Screenshot 2024-07-28 080549](https://github.com/user-attachments/assets/53d461c1-ad98-4d0e-a095-e85864ef7c21)
 
 The Paraphrasing Tool assists in modulating the tone of chat messages to foster positive dialogue.
 
