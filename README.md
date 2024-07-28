@@ -150,13 +150,30 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     python nlpflask.py
     ```
 
-11. Download and install flutter with the following instructions:
+11.1 Download and install flutter with the following instructions:
     ->download flutter sdk
     ->set path in environment variables(settings)
     ->Install Android Studio from website
     ->Download command line tools from android studio.
     -> Accept Licences.
     -> Install flutter and dart pluggins
+11.2 Installing Flutter with VS Code:
+
+    1. Download Flutter SDK from the official website.
+    2. Extract the downloaded file and add the flutter/bin directory to your system's PATH.
+    3. Install Visual Studio Code from the official website.
+    4. Install the Flutter extension in VS Code:
+        - Open VS Code.
+        - Go to Extensions (Ctrl+Shift+X).
+        - Search for 'Flutter' and click 'Install'.
+    5. Install the Dart extension in VS Code:
+        - Go to Extensions (Ctrl+Shift+X).
+        - Search for 'Dart' and click 'Install'.
+    6. Open a terminal in VS Code and run:
+        ```sh
+        flutter doctor
+        ```
+        - Follow any additional setup instructions provided by `flutter doctor`.
     
 12. Navigate to the Flutter project directory and run the app:
     ```sh
