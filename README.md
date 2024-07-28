@@ -66,7 +66,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/yourusername/emocare-plus.git
+    git clone https://github.com/chanakyaitgithub/emocare-.git
     ```
     
 2. Navigate to the project directory:
