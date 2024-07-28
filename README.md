@@ -158,7 +158,6 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     -> Accept Licences.
     -> Install flutter and dart pluggins
 11.2 Installing Flutter with VS Code:
-
     1. Download Flutter SDK from the official website.
     2. Extract the downloaded file and add the flutter/bin directory to your system's PATH.
     3. Install Visual Studio Code from the official website.
