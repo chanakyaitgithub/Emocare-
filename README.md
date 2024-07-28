@@ -88,25 +88,35 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
 5. Set up PostgreSQL:
     - Follow [PostgreSQL setup instructions](https://www.postgresql.org/docs/current/tutorial-install.html).
     - Configure the connection in the application settings.
+    - create a table named user with email, password as two text parameters with code
+      ```sh
+      CREATE TABLE user (
+    id SERIAL PRIMARY KEY,
+    email TEXT UNIQUE NOT NULL,
+    password TEXT NOT NULL
+    );
+   ```
+   - create a table named message
 
-6. Install Ollama by following the instructions on the [Ollama website](https://ollama.com).
 
-7. Download and run the Mistral model:
+7. Install Ollama by following the instructions on the [Ollama website](https://ollama.com).
+
+8. Download and run the Mistral model:
     ```sh
     ollama run mistral
     ```
 
-8. Run the Node.js server:
+9. Run the Node.js server:
     ```sh
     node server.js
     ```
 
-9. Run the Flask server:
+10. Run the Flask server:
     ```sh
     python nlpflask.py
     ```
 
-10. Download and install flutter with the following instructions:
+11. Download and install flutter with the following instructions:
     ->download flutter sdk
     ->set path in environment variables(settings)
     ->Install Android Studio from website
@@ -114,7 +124,7 @@ Emocare+ is a workplace chatting app equipped with advanced AI capabilities for 
     -> Accept Licences.
     -> Install flutter and dart pluggins
     
-11. Navigate to the Flutter project directory and run the app:
+12. Navigate to the Flutter project directory and run the app:
     ```sh
     cd flutter_app
     flutter pub get
